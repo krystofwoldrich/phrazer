@@ -58,6 +58,7 @@ class NewPhrazeScreen extends Component {
       favorite: false
     };
     this.props.onSavePhraze(phraze);
+    this.props.onGetPhrazesByCategory(phraze.category);
     this.props.navigation.dismiss();
   };
 
@@ -143,7 +144,9 @@ const styles = StyleSheet.create({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onSavePhraze: phraze => dispatch(actions.addPhraze(phraze))
+  onSavePhraze: phraze => dispatch(actions.addPhraze(phraze)),
+  onGetPhrazesByCategory: category =>
+    dispatch(actions.getPhrazesByCategory(category))
 });
 
 export default connect(

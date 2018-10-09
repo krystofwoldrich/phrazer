@@ -85,6 +85,7 @@ class PhrazeDetailScreen extends Component {
             const phraze = { ...item };
 
             this.props.onDeletePhraze(phraze.key);
+            this.props.onGetPhrazesByCategory(phraze.category)
             this.props.navigation.dismiss();
           }
         }
