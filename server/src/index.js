@@ -1,4 +1,3 @@
-import * as funcs from "firebase-functions";
 import express from "express";
 import config from "./config";
 import typeDefs from "./graphql/data/typeDefs";
@@ -24,4 +23,4 @@ expressApp.get("/user", (request, response) => {
 
 server.applyMiddleware({ app: expressApp, path: "/graphql" });
 
-export const app = funcs.https.onRequest(expressApp);
+expressApp.listen(3000);
