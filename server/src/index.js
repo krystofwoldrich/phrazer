@@ -23,4 +23,4 @@ expressApp.get("/user", (request, response) => {
 
 server.applyMiddleware({ app: expressApp, path: "/graphql" });
 
-expressApp.listen(3000);
+expressApp.listen(process.env.PORT || 3000);
