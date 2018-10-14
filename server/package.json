@@ -4,8 +4,8 @@
   "description": "Server for Phrazer mobile application.",
   "scripts": {
     "build": "babel src --out-dir dist --copy-files",
-    "start": "npm build && npm run",
-    "run": "node dist/index.js"
+    "run": "node dist/index.js",
+    "start": "npm run build && npm run run"
   },
   "dependencies": {
     "apollo-server-express": "^2.1.0",
