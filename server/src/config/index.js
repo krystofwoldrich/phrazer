@@ -1,8 +1,13 @@
 import mongooseConfig from "./mongoose";
-import * as functions from "firebase-functions";
+
+const dbConfig = {
+  host: "localhost",
+  db: "MyNewDB",
+  port: 27017
+};
 
 const rootConfig = () => {
-  mongooseConfig(functions.config().db);
+  mongooseConfig(dbConfig);
 };
 
 export default rootConfig;
