@@ -1,6 +1,13 @@
 {
   "expo": {
+    "name": "Phrazer",
+    "icon": "./phrazerIcon.png",
+    "version": "1.0.0",
     "sdkVersion": "27.0.0",
+    "slug": "phrazer",
+    "ios": {
+      "bundleIdentifier": "com.phrazer.app"
+    },
     "android": {
       "package": "phrazer.app",
       "versionCode": 1,
