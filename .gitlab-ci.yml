@@ -1,19 +1,16 @@
 image: node:latest
 
-cache:
-  paths:
-    - server/dist/functions/node_modules/
-
 deploy_production:
   stage: deploy
   environment: Production
+  image: ruby:latest
   only:
     - server
   script:
     - cd server/
-    - npm install -g firebase-tools
     - npm install
     - npm run-script build
-    - firebase functions:config:set --non-interactive --token $FIREBASE_DEPLOY_KEY db.host="$DB_HOST" db.port="$DB_PORT" db.db="$DB_NAME" db.user="$DB_USER" db.pass="$DB_PASS"
-    - firebase use --token $FIREBASE_DEPLOY_KEY default
-    - firebase deploy -m "Pipeline $CI_PIPELINE_ID, build $CI_BUILD_ID" --non-interactive --token $FIREBASE_DEPLOY_KEY
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
+    - dpl --provider=heroku --app=phrazer-server --api-key=$HEROKU_API_KEY
