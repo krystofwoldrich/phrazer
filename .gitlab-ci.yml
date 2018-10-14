@@ -1,5 +1,11 @@
 image: node:latest
 
+before_script:
+  - cd server/
+  - php composer.phar install
+  - npm install
+  - npm run-script build
+
 deploy_production:
   stage: deploy
   environment: Production
@@ -8,8 +14,6 @@ deploy_production:
     - server
   script:
     - cd server/
-    - npm install
-    - npm run-script build
     - apt-get update -qy
     - apt-get install -y ruby-dev
     - gem install dpl
