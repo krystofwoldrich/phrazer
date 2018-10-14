@@ -1,17 +1,13 @@
 import mongoose from "mongoose";
 
-const mongooseConfig = ({ host, db, user, pass, port }) => {
-  let uri;
-
-  if (!user || !pass) {
-    uri = "mongodb://" + "@" + host + ":" + port + "/" + db;
-  } else {
-    uri = "mongodb://" + user + ":" + pass + "@" + host + ":" + port + "/" + db;
-  }
-
+const mongooseConfig = () => {
   mongoose.connect(
-    uri,
+    "mongodb://phrazer-server-674354357:UzgE31M1oxU3a4gH@phrazer-db-shard-00-00-rpmal.mongodb.net:27017,phrazer-db-shard-00-01-rpmal.mongodb.net:27017,phrazer-db-shard-00-02-rpmal.mongodb.net:27017/test",
     {
+      ssl: true,
+      replicaSet: "phrazer-db-shard-0",
+      authSource: "admin",
+      retryWrites: true,
       useNewUrlParser: true
     }
   );

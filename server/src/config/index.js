@@ -1,13 +1,7 @@
 import mongooseConfig from "./mongoose";
 
-const dbConfig = {
-  host: "localhost",
-  db: "MyNewDB",
-  port: 27017
-};
-
 const rootConfig = () => {
-  mongooseConfig(dbConfig);
+  mongooseConfig();
 };
 
 export default rootConfig;
