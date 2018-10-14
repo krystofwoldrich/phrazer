@@ -1,5 +1,8 @@
 image: node:latest
 
+services:
+  - node:latest
+
 before_script:
   - cd server/
   - npm install
