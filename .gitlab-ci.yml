@@ -1,8 +1,5 @@
 image: node:latest
 
-services:
-  - node:latest
-
 before_script:
   - cd server/
   - npm install
@@ -11,7 +8,6 @@ before_script:
 deploy_production:
   stage: deploy
   environment: Production
-  image: ruby:latest
   only:
     - server
   script:
