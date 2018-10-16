@@ -10,7 +10,9 @@ const expressApp = express();
 
 const server = new ApolloServer({
   typeDefs,
-  resolvers
+  resolvers,
+  introspection: true,
+  playground: true
 });
 
 expressApp.get("/home", (request, response) => {
