@@ -1,5 +1,8 @@
 image: starefossen/ruby-node:latest
 
+deploy:
+  skip_cleanup: true
+
 before_script:
   - cd server/
   - npm install
@@ -14,4 +17,4 @@ deploy_production:
     - apt-get update -qy
     - apt-get install -y ruby-dev
     - gem install dpl
-    - dpl --provider=heroku --app=phrazer-server --api-key=$HEROKU_API_KEY
+    - dpl --provider=heroku --app=phrazer-server --api-key=$HEROKU_API_KEY --skip_cleanup=true
