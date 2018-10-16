@@ -1,8 +1,5 @@
 image: starefossen/ruby-node:latest
 
-deploy:
-  skip_cleanup: true
-
 before_script:
   - cd server/
   - npm install
