@@ -11,7 +11,6 @@ deploy_production:
   only:
     - server
   script:
-    - cd server/
     - apt-get update -qy
     - apt-get install -y ruby-dev
     - gem install dpl
