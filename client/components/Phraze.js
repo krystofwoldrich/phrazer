@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { View, StyleSheet } from "react-native";
+import Expo from "expo";
 
 import {
   Card,
@@ -9,12 +10,83 @@ import {
   CardButtonIcon
 } from "./../material-cards-custom";
 import Colors from "../config/colors";
-import { Icon } from "react-native-elements";
+
+PhraseSoundState = {
+  PLAYING: "PLAYING",
+  ERROR: "ERROR",
+  READY: "READY"
+};
 
 class Phraze extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      soundState: PhraseSoundState.READY
+    };
   }
+
+  _onSoundPlaybackStatusUpdate = ({ isPlaying }) => {
+    if (isPlaying) {
+      this.setState({
+        soundState: PhraseSoundState.PLAYING
+      });
+    } else {
+      this.setState({
+        soundState: PhraseSoundState.READY
+      });
+    }
+  };
+
+  playPhraseSound = async soundUri => {
+    const soundObject = new Expo.Audio.Sound();
+    try {
+      await soundObject.loadAsync({
+        uri:
+          "https://ia800406.us.archive.org/23/items/PeterHernandezPodcastAudioPlaceholder/AudioPlaceholder.mp3"
+      });
+      soundObject.setOnPlaybackStatusUpdate(this._onSoundPlaybackStatusUpdate);
+      await soundObject.playAsync();
+    } catch (error) {
+      this.setState({
+        soundState: PhraseSoundState.ERROR
+      });
+    }
+  };
+
+  setupSoundBtn = phraseItem => {
+    const inactiveButtonColor = Colors.button.inactive;
+
+    switch (this.state.soundState) {
+      case PhraseSoundState.ERROR:
+        return (
+          <CardButtonIcon
+            onPress={() => {}}
+            icon="volume-off"
+            color={inactiveButtonColor}
+          />
+        );
+
+      case PhraseSoundState.PLAYING:
+        return (
+          <CardButtonIcon
+            onPress={() => {}}
+            icon="volume-up"
+            color={inactiveButtonColor}
+          />
+        );
+
+      //PhraseSoundState.READY
+      default:
+        return (
+          <CardButtonIcon
+            onPress={() => this.playPhraseSound(phraseItem.sound)}
+            icon="volume-mute"
+            color={inactiveButtonColor}
+          />
+        );
+    }
+  };
 
   render() {
     const { item, onPressCheckBox, onPressPhraze } = this.props;
@@ -44,19 +116,7 @@ class Phraze extends Component {
       <View />
     );
 
-    const soundBtn = item.sound ? (
-      <CardButtonIcon
-        onPress={() => {}}
-        icon="volume-mute"
-        color={inactiveButtonColor}
-      />
-    ) : (
-      <CardButtonIcon
-        onPress={() => {}}
-        icon="volume-off"
-        color={inactiveButtonColor}
-      />
-    );
+    const soundBtn = this.setupSoundBtn(item);
 
     return (
       <Card>
