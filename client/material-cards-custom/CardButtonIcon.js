@@ -8,6 +8,9 @@ export default class CardButtonIcon extends Component {
     const color = this.props.color || "black";
     const iconName = this.props.icon || "bug-report";
     const newStyle = this.props.style || {};
+    const newIconStyle = this.props.iconStyle || {};
+    const { animated } = this.props;
+
     let directionStyle =
       this.props.inColumn === true
         ? styles.CardButtonInColumn
@@ -18,8 +21,9 @@ export default class CardButtonIcon extends Component {
         onPress={() => {
           this.props.onPress();
         }}
+        animated={animated}
       >
-        <Icon name={iconName} color={color} />
+        <Icon name={iconName} color={color} iconStyle={newIconStyle} />
       </Touchable>
     );
   }

@@ -9,12 +9,16 @@ import {
   CardAction,
   CardButtonIcon
 } from "./../material-cards-custom";
+
+import BreathingCardButtonIcon from "./BreathingCardButtonIcon";
+
 import Colors from "../config/colors";
 
 PhraseSoundState = {
   PLAYING: "PLAYING",
   ERROR: "ERROR",
-  READY: "READY"
+  READY: "READY",
+  BUFFERING: "BUFFERING"
 };
 
 class Phraze extends Component {
@@ -26,14 +30,10 @@ class Phraze extends Component {
     };
   }
 
-  _onSoundPlaybackStatusUpdate = ({ isPlaying }) => {
+  _onSoundPlaybackStatusUpdate = ({ isPlaying, isBuffering }) => {
     if (isPlaying) {
       this.setState({
         soundState: PhraseSoundState.PLAYING
-      });
-    } else {
-      this.setState({
-        soundState: PhraseSoundState.READY
       });
     }
   };
@@ -76,13 +76,28 @@ class Phraze extends Component {
           />
         );
 
+      case PhraseSoundState.BUFFERING:
+        return (
+          <BreathingCardButtonIcon
+            onPress={() => {}}
+            icon="volume-mute"
+            color={inactiveButtonColor}
+          />
+        );
+
       //PhraseSoundState.READY
       default:
         return (
           <CardButtonIcon
-            onPress={() => this.playPhraseSound(phraseItem.sound)}
+            onPress={() => {
+              this.playPhraseSound(phraseItem.sound);
+              this.setState({
+                soundState: PhraseSoundState.BUFFERING
+              });
+            }}
             icon="volume-mute"
             color={inactiveButtonColor}
+            animated={false}
           />
         );
     }
