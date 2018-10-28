@@ -41,10 +41,14 @@ class Phraze extends Component {
   playPhraseSound = async soundUri => {
     const soundObject = new Expo.Audio.Sound();
     try {
-      await soundObject.loadAsync({
-        uri:
-          "https://ia800406.us.archive.org/23/items/PeterHernandezPodcastAudioPlaceholder/AudioPlaceholder.mp3"
-      });
+      await soundObject.loadAsync(
+        {
+          uri:
+            "https://ia800406.us.archive.org/23/items/PeterHernandezPodcastAudioPlaceholder/AudioPlaceholder.mp3"
+        },
+        {},
+        true
+      );
       soundObject.setOnPlaybackStatusUpdate(this._onSoundPlaybackStatusUpdate);
       await soundObject.playAsync();
     } catch (error) {
