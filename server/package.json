@@ -19,8 +19,12 @@
   },
   "private": true,
   "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/node": "^7.0.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
     "babel-cli": "^6.26.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.7.0"
+    "babel-preset-env": "^1.7.0",
+    "nodemon": "latest"
   }
 }
