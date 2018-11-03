@@ -7,11 +7,12 @@ export const typeDef = gql`
     fullName: String!
     email: String!
     password: String!
+    dictionaries: [Dictionary]
   }
   extend type Query {
     getUsers: [User]
   }
-  type Mutation {
+  extend type Mutation {
     createUser(fullName: String!, email: String!, password: String!): User
     updateUser(id: ID!, fullName: String, email: String, password: String): User
     deleteUser(id: ID!): User
@@ -30,23 +31,15 @@ export const resolvers = {
           console.log(err);
         });
 
-      console.log(result);
-
       return result;
     }
   },
   Mutation: {
     createUser: (obj, args, context, info) => {
-      console.log(args);
       const newUser = new User(args);
-      newUser
-        .save()
-        .then(saveUser => {
-          console.log(saveUser);
-        })
-        .catch(err => {
-          console.log(err);
-        });
+      newUser.save().catch(err => {
+        console.log(err);
+      });
 
       return newUser;
     },
