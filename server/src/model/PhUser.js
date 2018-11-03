@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { Schema } from "mongoose";
+import { phDictionarySchema } from "./PhDictionary";
 
 export const phUserSchema = new Schema({
   fullName: {
@@ -13,6 +14,10 @@ export const phUserSchema = new Schema({
   password: {
     type: String,
     required: true
+  },
+  dictionaries: {
+    type: [phDictionarySchema],
+    default: []
   }
 });
 

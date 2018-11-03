@@ -14,11 +14,11 @@ export const phPhraseSchema = new Schema({
     required: false
   },
   user: {
-    type: phUserSchema,
+    type: Schema.Types.ObjectId,
     required: true
   },
   category: {
-    type: [phCategorySchema],
+    type: [Schema.Types.ObjectId],
     default: []
   }
 });

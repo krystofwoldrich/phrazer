@@ -8,12 +8,8 @@ export const phDictionarySchema = new Schema({
     type: String,
     required: false
   },
-  user: {
-    type: phUserSchema,
-    required: true
-  },
   phrases: {
-    type: [phPhraseSchema],
+    type: [Schema.Types.ObjectId],
     default: []
   },
   nativeLanguage: {
