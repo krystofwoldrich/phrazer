@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import { Schema } from "mongoose";
-import { phUserSchema } from "./PhUser";
-import { phPhraseSchema } from "./PhPhrase";
+
+import LangEnum from "./utils/LanguageEnum";
 
 export const phDictionarySchema = new Schema({
   name: {
@@ -14,10 +14,11 @@ export const phDictionarySchema = new Schema({
   },
   nativeLanguage: {
     type: String,
+    enum: Object.values(LangEnum),
     required: true
   },
   foreignLanguage: {
-    type: String,
+    type: Object.values(LangEnum),
     required: true
   }
 });
