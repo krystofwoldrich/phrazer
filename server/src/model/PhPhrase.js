@@ -1,23 +1,21 @@
 import mongoose from "mongoose";
 import { Schema } from "mongoose";
-import { phUserSchema } from "./PhUser";
-import { phCategorySchema } from "./PhCategory";
 import { phSentenceSchema } from "./PhSentence";
 
 export const phPhraseSchema = new Schema({
-  nativeSentence: {
+  native: {
     type: phSentenceSchema,
     required: true
   },
-  foreignSentence: {
+  foreign: {
     type: phSentenceSchema,
     required: false
   },
-  user: {
+  userId: {
     type: Schema.Types.ObjectId,
     required: true
   },
-  category: {
+  categories: {
     type: [Schema.Types.ObjectId],
     default: []
   }
