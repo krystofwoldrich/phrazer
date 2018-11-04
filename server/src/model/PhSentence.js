@@ -4,7 +4,7 @@ import { Schema } from "mongoose";
 export const phSentenceSchema = new Schema({
   sentence: {
     type: String,
-    required: true
+    required: false
   },
   language: {
     type: String,
