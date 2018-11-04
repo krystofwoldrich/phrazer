@@ -9,7 +9,7 @@ export const typeDef = gql`
   }
   type Sentence {
     id: ID!
-    sentence: String!
+    sentence: String
     language: String!
     soundUrl: String
   }
