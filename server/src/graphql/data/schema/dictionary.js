@@ -38,11 +38,27 @@ export const resolvers = {
 
       return newDic;
     },
-    updateDictionary: (obj, args, context, info) => {
-      return null;
+    updateDictionary: async (obj, args, context, info) => {
+      const user = await User.findOne({
+        "dictionaries._id": args.id
+      });
+      const dictionary = user.dictionaries.id(args.id);
+
+      dictionary.set(args);
+      user.save();
+
+      return dictionary;
     },
-    deleteDictionary: (obj, args, context, info) => {
-      return null;
+    deleteDictionary: async (obj, args, context, info) => {
+      const user = await User.findOne({
+        "dictionaries._id": args.id
+      });
+      const dictionary = user.dictionaries.id(args.id);
+
+      dictionary.remove();
+      user.save();
+
+      return dictionary;
     }
   }
 };
