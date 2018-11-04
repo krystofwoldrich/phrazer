@@ -42,6 +42,16 @@ export const typeDef = gql`
 `;
 
 export const resolvers = {
+  Query: {
+    getPhrases: () => {
+      let result = Phrase.find({})
+        .exec()
+        .then(r => r)
+        .catch(e => console.log(e));
+
+      return result;
+    }
+  },
   Mutation: {
     createPhrase: async (obj, args, context, info) => {
       const newNative = new Sentence(args.native);
