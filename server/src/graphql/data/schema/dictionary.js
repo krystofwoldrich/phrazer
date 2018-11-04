@@ -4,14 +4,11 @@ import Dictionary from "./../../../model/PhDictionary";
 
 export const typeDef = gql`
   type Dictionary {
-    id: String!
+    id: ID!
     name: String
     phrases: [String]
     nativeLanguage: String!
     foreignLanguage: String!
-  }
-  extend type Query {
-    getDictionaries: [Dictionary]
   }
   extend type Mutation {
     createDictionary(
