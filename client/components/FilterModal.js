@@ -23,6 +23,9 @@ const FilterModal = ({
     },
     []
   );
+
+  categories.push({ category: "Favourite" });
+
   console.log(categories);
 
   return (
