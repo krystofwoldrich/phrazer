@@ -10,28 +10,48 @@ const initState = {
   selectedCategory: ""
 };
 
-const phraseSkleton = {
-  library: "Russian to Finnish",
-  public: false,
-  phrazed: false,
-  favorite: false
+const createPhrases = (category, array = [], categoryName = "New") => {
+  const phraseSkleton = {
+    library: "Russian to Finnish",
+    public: false,
+    phrazed: false,
+    favorite: false
+  };
+  const phrases = [];
+
+  let key = array.length;
+  let index = 0;
+  while (index < category.length) {
+    const native = category[index + 1];
+    const translation = category[index];
+
+    phrases.push({
+      ...phraseSkleton,
+      key: JSON.stringify(key),
+      category: categoryName,
+      phraze: native,
+      translated: translation
+    });
+
+    key++;
+    index = index + 2;
+  }
+
+  return array.concat(phrases);
 };
 
-index = 0;
-while (index < Category1.length) {
-  const native = Category1[index + 1];
-  const translation = Category1[index];
-
-  initState.phrazes.push({
-    ...phraseSkleton,
-    key: JSON.stringify(initState.length + 1),
-    category: "Maa ja pohjarakennus",
-    phraze: native,
-    translated: translation
-  });
-
-  index = index + 2;
-}
+initState.phrazes = createPhrases(
+  Category1,
+  initState.phrazes,
+  "Maa ja pohjarakennus"
+);
+initState.phrazes = createPhrases(Category2, initState.phrazes, "Perustukset");
+initState.phrazes = createPhrases(
+  Category3,
+  initState.phrazes,
+  "Runko ja vesikattorakenteet"
+);
+initState.phrazes = createPhrases(Category4, initState.phrazes, "Tital");
 
 export default (state = initState, action) => {
   switch (action.type) {
