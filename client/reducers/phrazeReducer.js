@@ -93,9 +93,14 @@ export default (state = initState, action) => {
         phrazes: newPhrazes
       };
     case actionTypes.GET_PHRAZES_BY_CATEGORY:
-      const phrazesByCategory = state.phrazes.filter(
-        phraze => phraze.category === action.payload
-      );
+      let phrazesByCategory;
+      if (action.payload === "Favourite") {
+        phrazesByCategory = state.phrazes.filter(phrase => phrase.favorite);
+      } else {
+        phrazesByCategory = state.phrazes.filter(
+          phraze => phraze.category === action.payload
+        );
+      }
       return {
         ...state,
         phrazesByCategory,
