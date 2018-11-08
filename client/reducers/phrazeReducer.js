@@ -1,6 +1,7 @@
 import * as actionTypes from "../actions/actionTypes";
+import Category1 from "./../content/vacabulary/maa_ja_pohjarakennus.json";
 
-const initState = {
+const initState2 = {
   phrazes: [
     {
       key: "1",
@@ -67,7 +68,31 @@ const initState = {
   selectedCategory: ""
 };
 
-export default (state = initState, action) => {
+const initState = [];
+
+const phraseSkleton = {
+  library: "Russian to Finnish",
+  public: false,
+  phrazed: false,
+  favorite: false
+};
+
+for (let index = 0; index < Category1.length; index + 2) {
+  const native = Category1[index + 1];
+  const translation = Category1[index];
+
+  initState.push({
+    ...phraseSkleton,
+    key: initState.length + 1,
+    category: "Maa ja pohjarakennus",
+    phraze: native,
+    translated: translation
+  });
+}
+
+console.log(initState);
+
+export default (state = initState2, action) => {
   switch (action.type) {
     case actionTypes.EDIT_PHRASE:
       const newPhrasesArr = [...state.phrazes];
