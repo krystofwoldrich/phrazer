@@ -68,7 +68,11 @@ const initState2 = {
   selectedCategory: ""
 };
 
-const initState = [];
+const initState = {
+  phrazes: [],
+  phrazesByCategory: [],
+  selectedCategory: ""
+};
 
 const phraseSkleton = {
   library: "Russian to Finnish",
@@ -77,22 +81,23 @@ const phraseSkleton = {
   favorite: false
 };
 
-for (let index = 0; index < Category1.length; index + 2) {
+index = 0;
+while (index < Category1.length) {
   const native = Category1[index + 1];
   const translation = Category1[index];
 
-  initState.push({
+  initState.phrazes.push({
     ...phraseSkleton,
-    key: initState.length + 1,
+    key: JSON.stringify(initState.length + 1),
     category: "Maa ja pohjarakennus",
     phraze: native,
     translated: translation
   });
+
+  index = index + 2;
 }
 
-console.log(initState);
-
-export default (state = initState2, action) => {
+export default (state = initState, action) => {
   switch (action.type) {
     case actionTypes.EDIT_PHRASE:
       const newPhrasesArr = [...state.phrazes];

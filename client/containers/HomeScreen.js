@@ -30,7 +30,7 @@ class HomeScreen extends Component {
     page: 1,
     showTip: true,
     showFilterModal: false,
-    category: "Meeting"
+    category: "Maa ja pohjarakennus"
   };
 
   componentDidMount() {
