@@ -1,19 +1,38 @@
 [
   {
     "translation": "Rungon paikallavalu(työt)",
-    "native": "Расположение рамы (работ)"
+    "native": "Расположение рамы (работ)",
+    "path": "http://phrazer.8u.cz/sounds/runko_ja_vesikattorakenteet/rungon_paikallavalu.wav"
   },
-  { "translation": "rungon detaljit", "native": "подробная информация" },
+  {
+    "translation": "rungon detaljit",
+    "native": "подробная информация",
+    "path": "http://phrazer.8u.cz/sounds/runko_ja_vesikattorakenteet/rungon_detaljit.wav"
+  },
   {
     "translation": "elementit( Ontelolaata, betonielementti, parvekelaatta)",
-    "native": "элементы (полая плита, бетонный элемент, балконная плита)"
+    "native": "элементы (полая плита, бетонный элемент, балконная плита)",
+    "path": "http://phrazer.8u.cz/sounds/runko_ja_vesikattorakenteet/elementit.wav"
   },
-  { "translation": "hissikuilu", "native": "шахта лифта" },
-  { "translation": "kerros", "native": "слой" },
-  { "translation": "Pystysaumabetonointi", "native": "Pystysaumabetonointi" },
+  {
+    "translation": "hissikuilu",
+    "native": "шахта лифта",
+    "path": "http://phrazer.8u.cz/sounds/runko_ja_vesikattorakenteet/hissikuilu.wav"
+  },
+  {
+    "translation": "kerros",
+    "native": "слой",
+    "path": "http://phrazer.8u.cz/sounds/runko_ja_vesikattorakenteet/kerros.wav"
+  },
+  {
+    "translation": "Pystysaumabetonointi",
+    "native": "Pystysaumabetonointi",
+    "path": "http://phrazer.8u.cz/sounds/runko_ja_vesikattorakenteet/pystysaumabetonointi.wav"
+  },
   {
     "translation": "porraselementti (portaat)",
-    "native": "ступенчатый элемент (лестницы)"
+    "native": "ступенчатый элемент (лестницы)",
+    "path": "http://phrazer.8u.cz/sounds/runko_ja_vesikattorakenteet/porraselementti.wav"
   },
   { "translation": "parvekekaide", "native": "балкон перила" },
   { "translation": "parvekelasitus", "native": "остекление балконов" },

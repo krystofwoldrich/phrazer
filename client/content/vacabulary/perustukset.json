@@ -1,12 +1,37 @@
 [
-  { "translation": "muotti", "native": "плесень" },
-  { "translation": "raudoitus", "native": "конопатить" },
-  { "translation": "valu (betoni)", "native": "литье (бетон)" },
+  {
+    "translation": "muotti",
+    "native": "плесень",
+    "path": "http://phrazer.8u.cz/perustukset/muotti.wav"
+  },
+  {
+    "translation": "raudoitus",
+    "native": "конопатить",
+    "path": "http://phrazer.8u.cz/perustukset/raudoitus.wav"
+  },
+  {
+    "translation": "valu (betoni)",
+    "native": "литье (бетон)",
+    "path": "http://phrazer.8u.cz/perustukset/valu.wav"
+  },
   {
     "translation": "eristeet(lämmöneristys)",
-    "native": "изоляция (тепловая изоляция)"
+    "native": "изоляция (тепловая изоляция)",
+    "path": "http://phrazer.8u.cz/perustukset/valu.wav"
   },
-  { "translation": "vedeneriste", "native": "изоляция воды" },
-  { "translation": "Uretaani", "native": "уретан" },
-  { "translation": "EPS (styrox)", "native": "EPS (стирокс)" }
+  {
+    "translation": "vedeneriste",
+    "native": "изоляция воды",
+    "path": "http://phrazer.8u.cz/perustukset/vedeneriste.wav"
+  },
+  {
+    "translation": "Uretaani",
+    "native": "уретан",
+    "path": "http://phrazer.8u.cz/perustukset/uretaani.wav"
+  },
+  {
+    "translation": "EPS (styrox)",
+    "native": "EPS (стирокс)",
+    "path": "http://phrazer.8u.cz/perustukset/EPS.wav"
+  }
 ]

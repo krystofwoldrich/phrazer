@@ -2,15 +2,36 @@
   {
     "translation": "maanrakennus",
     "native": "гражданское строительство",
-    "url": ""
+    "path": "http://phrazer.8u.cz/sounds/maa_ja_pohjarakennus/maanrakennus.wav"
   },
-  { "translation": "sepeli", "native": "макадам" },
-  { "translation": "paalu (työt)", "native": "сваи (работы)" },
-  { "translation": "piha", "native": "двор" },
-  { "translation": "tontti", "native": "участок" },
-  { "translation": "asfaltti", "native": "гудронированное шоссе" },
+  {
+    "translation": "sepeli",
+    "native": "макадам",
+    "path": "http://phrazer.8u.cz/sounds/maa_ja_pohjarakennus/sepeli.wav"
+  },
+  {
+    "translation": "paalu (työt)",
+    "native": "сваи (работы)",
+    "path": "http://phrazer.8u.cz/sounds/maa_ja_pohjarakennus/paalu.wav"
+  },
+  {
+    "translation": "piha",
+    "native": "двор",
+    "path": "http://phrazer.8u.cz/sounds/maa_ja_pohjarakennus/piha.wav"
+  },
+  {
+    "translation": "tontti",
+    "native": "участок",
+    "path": "http://phrazer.8u.cz/sounds/maa_ja_pohjarakennus/tontti.wav"
+  },
+  {
+    "translation": "asfaltti",
+    "native": "гудронированное шоссе",
+    "path": "http://phrazer.8u.cz/sounds/maa_ja_pohjarakennus/asfaltti.wav"
+  },
   {
     "translation": "ulkovarusteet (pyöräteline)",
-    "native": "Наружное оборудование (велосипедное крепление)"
+    "native": "Наружное оборудование (велосипедное крепление)",
+    "path": "http://phrazer.8u.cz/sounds/maa_ja_pohjarakennus/ulkovarusteet.wav"
   }
 ]

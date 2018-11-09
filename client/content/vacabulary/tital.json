@@ -1,35 +1,57 @@
 [
-  { "translaton": "Pohjakuvat", "native": "Ground Pictures" },
-  { "translaton": "aula", "native": "лобби" },
-  { "translaton": "alue", "native": "зона" },
-  { "translaton": "käytävä", "native": "коридор" },
   {
-    "translaton": "porrashuone /portaikko",
-    "native": "лестничная клетка / лестница"
+    "translation": "Pohjakuvat",
+    "native": "Ground Pictures",
+    "path": "http://phrazer.8u.cz/sounds/tilat/pohjakuvat.wav"
   },
-  { "translaton": "asunnot / huonesitot", "native": "квартиры / рестораны" },
   {
-    "translaton": "huone (MH, K, OH, WC, KPH, ET, VH, alkovi)",
-    "native": "(MH, K, OH, WC, KPH, ET, VH, alcove)"
+    "translation": "aula",
+    "native": "лобби",
+    "path": "http://phrazer.8u.cz/sounds/tilat/aula.wav"
   },
-  { "translaton": "parveke", "native": "балкон" },
-  { "translaton": "terassi", "native": "терраса" },
-  { "translaton": "yleiset tilat", "native": "общие объекты" },
-  { "translaton": "saunaosasto", "native": "сауна" },
-  { "translaton": "pesula", "native": "прачечная" },
-  { "translaton": "Ulkovälinevarasto", "native": "Открытый склад" },
   {
-    "translaton": "irtaimistovarasto (häkkivarasto)",
+    "translation": "alue",
+    "native": "зона",
+    "path": "http://phrazer.8u.cz/sounds/tilat/alue.wav"
+  },
+  {
+    "translation": "käytävä",
+    "native": "коридор",
+    "path": "http://phrazer.8u.cz/sounds/tilat/käytävä.wav"
+  },
+  {
+    "translation": "porrashuone /portaikko",
+    "native": "лестничная клетка / лестница",
+    "path": "http://phrazer.8u.cz/sounds/tilat/porrashuone_portaikko.wav"
+  },
+  {
+    "translation": "asunnot / huonesitot",
+    "native": "квартиры / рестораны",
+    "path": "http://phrazer.8u.cz/sounds/tilat/asunnot_huonesitot.wav"
+  },
+  {
+    "translation": "huone (MH, K, OH, WC, KPH, ET, VH, alkovi)",
+    "native": "(MH, K, OH, WC, KPH, ET, VH, alcove)",
+    "path": "http://phrazer.8u.cz/sounds/tilat/huone.wav"
+  },
+  { "translation": "parveke", "native": "балкон" },
+  { "translation": "terassi", "native": "терраса" },
+  { "translation": "yleiset tilat", "native": "общие объекты" },
+  { "translation": "saunaosasto", "native": "сауна" },
+  { "translation": "pesula", "native": "прачечная" },
+  { "translation": "Ulkovälinevarasto", "native": "Открытый склад" },
+  {
+    "translation": "irtaimistovarasto (häkkivarasto)",
     "native": "мебельный склад (склад сейфа)"
   },
-  { "translaton": "Väestönsuoja", "native": "бомбоубежище" },
-  { "translaton": "alapohja", "native": "основание пола" },
-  { "translaton": "yläpohja", "native": "крыша" },
-  { "translaton": "sähköpääkeskus", "native": "главный" },
+  { "translation": "Väestönsuoja", "native": "бомбоубежище" },
+  { "translation": "alapohja", "native": "основание пола" },
+  { "translation": "yläpohja", "native": "крыша" },
+  { "translation": "sähköpääkeskus", "native": "главный" },
   {
-    "translaton": "lämmönjakohuone",
+    "translation": "lämmönjakohuone",
     "native": "распределение температуры помещения"
   },
-  { "translaton": "Teletila", "native": "Режим Tele" },
-  { "translaton": "siivouskomero", "native": "очистки шкаф" }
+  { "translation": "Teletila", "native": "Режим Tele" },
+  { "translation": "siivouskomero", "native": "очистки шкаф" }
 ]
