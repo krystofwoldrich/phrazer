@@ -1,16 +1,16 @@
 [
-"maanrakennus",
-"гражданское строительство",
-"sepeli",
-"макадам",
-"paalu (työt)",
-"сваи (работы)",
-"piha",
-"двор",
-"tontti",
-"участок",
-"asfaltti",
-"гудронированное шоссе",
-"ulkovarusteet (pyöräteline)",
-"Наружное оборудование (велосипедное крепление)"
+  {
+    "translation": "maanrakennus",
+    "native": "гражданское строительство",
+    "url": ""
+  },
+  { "translation": "sepeli", "native": "макадам" },
+  { "translation": "paalu (työt)", "native": "сваи (работы)" },
+  { "translation": "piha", "native": "двор" },
+  { "translation": "tontti", "native": "участок" },
+  { "translation": "asfaltti", "native": "гудронированное шоссе" },
+  {
+    "translation": "ulkovarusteet (pyöräteline)",
+    "native": "Наружное оборудование (велосипедное крепление)"
+  }
 ]

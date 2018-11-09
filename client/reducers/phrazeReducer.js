@@ -21,21 +21,18 @@ const createPhrases = (category, array = [], categoryName = "New") => {
 
   let key = array.length;
   let index = 0;
-  while (index < category.length) {
-    const native = category[index + 1];
-    const translation = category[index];
-
+  category.forEach(rawPhrase => {
     phrases.push({
       ...phraseSkleton,
       key: JSON.stringify(key),
       category: categoryName,
-      phraze: native,
-      translated: translation
+      phraze: rawPhrase.native,
+      translated: rawPhrase.translation
     });
 
     key++;
     index = index + 2;
-  }
+  });
 
   return array.concat(phrases);
 };

@@ -1,16 +1,12 @@
 [
-  "muotti",
-  "плесень",
-  "raudoitus",
-  "конопатить",
-  "valu (betoni)",
-  "литье (бетон)",
-  "eristeet(lämmöneristys)",
-  "изоляция (тепловая изоляция)",
-  "vedeneriste",
-  "изоляция воды",
-  "Uretaani",
-  "уретан",
-  "EPS (styrox)",
-  "EPS (стирокс)"
+  { "translation": "muotti", "native": "плесень" },
+  { "translation": "raudoitus", "native": "конопатить" },
+  { "translation": "valu (betoni)", "native": "литье (бетон)" },
+  {
+    "translation": "eristeet(lämmöneristys)",
+    "native": "изоляция (тепловая изоляция)"
+  },
+  { "translation": "vedeneriste", "native": "изоляция воды" },
+  { "translation": "Uretaani", "native": "уретан" },
+  { "translation": "EPS (styrox)", "native": "EPS (стирокс)" }
 ]

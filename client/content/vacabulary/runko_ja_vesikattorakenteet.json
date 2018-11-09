@@ -1,34 +1,42 @@
 [
-  "Rungon paikallavalu(työt)",
-  "Расположение рамы (работ)",
-  "rungon detaljit",
-  "подробная информация",
-  "elementit( Ontelolaata, betonielementti, parvekelaatta)",
-  "элементы (полая плита, бетонный элемент, балконная плита)",
-  "hissikuilu",
-  "шахта лифта",
-  "kerros",
-  "слой",
-  "Pystysaumabetonointi",
-  "Pystysaumabetonointi",
-  "porraselementti (portaat)",
-  "ступенчатый элемент (лестницы)",
-  "parvekekaide",
-  "балкон перила",
-  "parvekelasitus",
-  "остекление балконов",
-  "parvekkeiden vedenpoisto",
-  "обезвоживание балкона",
-  "(yläpohjanlämmön)eriste ",
-  "(Yläpohjanlämmön) изолирующий",
-  "Rungon puurakenteet",
-  "Деревянные каркасные конструкции",
-  "koolaus",
-  "балки",
-  "levyt (Cembrit, vaneri)",
-  "листы (Cembrit, фанера)",
-  "ritilä( puu, metalli,muovi)",
-  "решетка (дерево, металл, пластик)",
-  "(ovi)syvennykset",
-  "(Дверь), выемки"
+  {
+    "translation": "Rungon paikallavalu(työt)",
+    "native": "Расположение рамы (работ)"
+  },
+  { "translation": "rungon detaljit", "native": "подробная информация" },
+  {
+    "translation": "elementit( Ontelolaata, betonielementti, parvekelaatta)",
+    "native": "элементы (полая плита, бетонный элемент, балконная плита)"
+  },
+  { "translation": "hissikuilu", "native": "шахта лифта" },
+  { "translation": "kerros", "native": "слой" },
+  { "translation": "Pystysaumabetonointi", "native": "Pystysaumabetonointi" },
+  {
+    "translation": "porraselementti (portaat)",
+    "native": "ступенчатый элемент (лестницы)"
+  },
+  { "translation": "parvekekaide", "native": "балкон перила" },
+  { "translation": "parvekelasitus", "native": "остекление балконов" },
+  {
+    "translation": "parvekkeiden vedenpoisto",
+    "native": "обезвоживание балкона"
+  },
+  {
+    "translation": "(yläpohjanlämmön)eriste ",
+    "native": "(Yläpohjanlämmön) изолирующий"
+  },
+  {
+    "translation": "Rungon puurakenteet",
+    "native": "Деревянные каркасные конструкции"
+  },
+  { "translation": "koolaus", "native": "балки" },
+  {
+    "translation": "levyt (Cembrit, vaneri)",
+    "native": "листы (Cembrit, фанера)"
+  },
+  {
+    "translation": "ritilä( puu, metalli,muovi)",
+    "native": "решетка (дерево, металл, пластик)"
+  },
+  { "translation": "(ovi)syvennykset", "native": "(Дверь), выемки" }
 ]
