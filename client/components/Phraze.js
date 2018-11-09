@@ -31,24 +31,22 @@ class Phraze extends Component {
   }
 
   _onSoundPlaybackStatusUpdate = ({ isPlaying, isBuffering }) => {
+    console.log("is playing: " + isPlaying);
     if (isPlaying) {
       this.setState({
         soundState: PhraseSoundState.PLAYING
       });
+    } else {
+      this.setState({
+        soundState: PhraseSoundState.READY
+      });
     }
   };
 
-  playPhraseSound = async soundUri => {
+  playPhraseSound = async soundSource => {
     const soundObject = new Expo.Audio.Sound();
     try {
-      await soundObject.loadAsync(
-        {
-          uri:
-            "https://ia800406.us.archive.org/23/items/PeterHernandezPodcastAudioPlaceholder/AudioPlaceholder.mp3"
-        },
-        {},
-        true
-      );
+      await soundObject.loadAsync(soundSource, {}, true);
       soundObject.setOnPlaybackStatusUpdate(this._onSoundPlaybackStatusUpdate);
       await soundObject.playAsync();
     } catch (error) {
@@ -59,9 +57,12 @@ class Phraze extends Component {
   };
 
   setupSoundBtn = phraseItem => {
+    let { soundState } = this.state;
+    soundState = phraseItem.sound ? soundState : PhraseSoundState.ERROR;
+
     const inactiveButtonColor = Colors.button.inactive;
 
-    switch (this.state.soundState) {
+    switch (soundState) {
       case PhraseSoundState.ERROR:
         return (
           <CardButtonIcon
@@ -94,7 +95,7 @@ class Phraze extends Component {
         return (
           <CardButtonIcon
             onPress={() => {
-              this.playPhraseSound(phraseItem.sound);
+              this.playPhraseSound({ uri: phraseItem.sound });
               this.setState({
                 soundState: PhraseSoundState.BUFFERING
               });
