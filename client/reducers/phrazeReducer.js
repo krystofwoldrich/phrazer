@@ -27,7 +27,8 @@ const createPhrases = (category, array = [], categoryName = "New") => {
       key: JSON.stringify(key),
       category: categoryName,
       phraze: rawPhrase.native,
-      translated: rawPhrase.translation
+      translated: rawPhrase.translation,
+      sound: rawPhrase.path
     });
 
     key++;
