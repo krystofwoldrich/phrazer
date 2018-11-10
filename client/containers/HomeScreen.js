@@ -28,7 +28,7 @@ class HomeScreen extends Component {
   state = {
     refreshing: false,
     page: 1,
-    showTip: true,
+    showTip: false,
     showFilterModal: false,
     category: "Maa ja pohjarakennus"
   };
