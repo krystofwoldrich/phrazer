@@ -8,10 +8,12 @@ import reducers from "./reducers";
 import { createSwitchNavigator, createStackNavigator } from "react-navigation";
 import createDismissableStackNavigator from "./navigation/helpers/createDissmissableStackNavigator";
 import BottomTabNavigator from "./navigation/BottomTabNavigator";
+import StackWrapper from "./navigation/BasicStackNavigatorWrapper";
 
 import LoginScreen from "./components/LoginScreen";
 import NewPhrazeScreen from "./containers/NewPhrazeScreen";
 import PhrazeDetailScreen from "./containers/PhrazeDetailScreen";
+import HomeScreen from "./containers/HomeScreen";
 
 Expo.Font.loadAsync({
   Roboto: require("./fonts/Roboto/Roboto-Regular.ttf"),
@@ -38,8 +40,8 @@ const NewPhrazeStack = createDismissableStackNavigator(
 
 const RootStack = createStackNavigator(
   {
-    BottomTabNavigator,
-    NewPhrazeStack,
+    HomeStack: StackWrapper("menu", "search", "Home", { HomeScreen }),
+    NewPhrazeStack
   },
   {
     mode: "modal",
