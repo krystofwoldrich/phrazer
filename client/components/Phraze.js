@@ -143,12 +143,12 @@ class Phraze extends Component {
         <CardTitle title={item.phraze} subtitleAbove={true} />
         {foreign}
         <CardAction separator={false} inColumn={false} style={styles.actions}>
-          {soundBtn}
           <CardButtonIcon
             onPress={() => onPressCheckBox(item.key, "favorite")}
             icon={currentButtonsState.favorite.icon}
             color={currentButtonsState.favorite.color}
           />
+          {soundBtn}
           <CardButtonIcon
             onPress={() => onPressPhraze(item)}
             icon="create"
