@@ -101,17 +101,6 @@ class NewPhrazeScreen extends Component {
             size={26}
           />
         </View>
-        <CheckBox
-          containerStyle={styles.checkBoxContainer}
-          iconType="material"
-          checkedIcon="check-box"
-          uncheckedIcon="check-box-outline-blank"
-          checkedColor={Colors.mainColor.light}
-          textStyle={{ color: Colors.icon.grey.dark, fontWeight: "300" }}
-          title="Public"
-          checked={isPublic}
-          onPress={() => this.setState({ isPublic: !isPublic })}
-        />
       </ScrollView>
     );
   }
