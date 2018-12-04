@@ -1,0 +1,17 @@
+{
+  "phraseInput": {
+    "label": "Phrase",
+    "description": "Enter text in language you know"
+  },
+  "categoryInput": {
+    "label": "Category",
+    "description": "Enter existing or create new category"
+  },
+  "translationInput": {
+    "label": "Translated phrase",
+    "description": "Enter phrase in language you want to learn"
+  },
+  "recordPhraseButton": {
+    "label": "Add voice record"
+  }
+}
