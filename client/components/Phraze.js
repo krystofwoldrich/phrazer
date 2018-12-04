@@ -43,6 +43,16 @@ class Phraze extends Component {
     }
   };
 
+  playPhraseSoundObject = async sound => {
+    try {
+      await sound.replayAsync();
+    } catch (error) {
+      this.setState({
+        soundState: PhraseSoundState.ERROR
+      });
+    }
+  };
+
   playPhraseSound = async soundSource => {
     const soundObject = new Expo.Audio.Sound();
     try {
@@ -95,10 +105,14 @@ class Phraze extends Component {
         return (
           <CardButtonIcon
             onPress={() => {
-              this.playPhraseSound({ uri: phraseItem.sound });
-              this.setState({
-                soundState: PhraseSoundState.BUFFERING
-              });
+              if (phraseItem.sound.object) {
+                this.playPhraseSoundObject(phraseItem.sound.object);
+              } else {
+                this.playPhraseSound({ uri: phraseItem.sound.path });
+                this.setState({
+                  soundState: PhraseSoundState.BUFFERING
+                });
+              }
             }}
             icon="volume-mute"
             color={inactiveButtonColor}
