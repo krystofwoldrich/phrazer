@@ -1,10 +1,12 @@
 {
   "expo": {
-    "name": "Phrazer",
+    "name": "Phrazer Demo",
+    "description": "This is a demo of Phrazer application, which was prepared for meeting 5th of December 2018 at Aalto University. \nIn the demo of the app you can try to manage demo content, which is prepared for you. \n\nKeep in mind this is just demo. Therefore no action will be saved after closing the app.",
     "icon": "./phrazerIcon.png",
     "version": "1.0.0",
     "sdkVersion": "27.0.0",
-    "slug": "phrazer",
+    "slug": "phrazer-demo",
+    "orientation": "portrait",
     "ios": {
       "bundleIdentifier": "com.phrazer.app"
     },
