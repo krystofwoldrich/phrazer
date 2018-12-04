@@ -1,20 +1,17 @@
 import React, { Component } from "react";
+import Expo from "expo";
 import { connect } from "react-redux";
+
 import { ScrollView, View, StyleSheet } from "react-native";
-import Text from "../components/MyText";
-import { Icon, CheckBox, Button } from "react-native-elements";
-import { Dropdown } from "react-native-material-dropdown";
+import { Button as ElementsButton, Icon } from "react-native-elements";
 import { TextField } from "react-native-material-textfield";
+
+import { Button, TextInput, HelperText } from "react-native-paper";
 
 import * as actions from "../actions";
 import Colors from "../config/colors";
 
-const data = [
-  { value: "Finnish" },
-  { value: "German" },
-  { value: "Lithuanian" },
-  { value: "Czech" }
-];
+import EN from "../language/en/new_phrase.json";
 
 class NewPhrazeScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -29,7 +26,7 @@ class NewPhrazeScreen extends Component {
     ),
     headerTitle: "New Phraze",
     headerRight: (
-      <Button
+      <ElementsButton
         buttonStyle={styles.saveButton}
         title="SAVE"
         onPress={() => navigation.state.params.handleSave()}
@@ -37,11 +34,14 @@ class NewPhrazeScreen extends Component {
     )
   });
 
+  recording = new Expo.Audio.Recording();
+
   state = {
     category: "",
     phraze: "",
     translated: "",
-    isPublic: false
+    isPublic: false,
+    isRecording: false
   };
 
   componentDidMount() {
@@ -62,45 +62,88 @@ class NewPhrazeScreen extends Component {
     this.props.navigation.dismiss();
   };
 
+  onRecordingStart = async () => {
+    const { recording } = this;
+    try {
+      await recording.prepareToRecordAsync(
+        Expo.Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY
+      );
+      await recording.startAsync();
+      this.setState({
+        isRecording: true
+      });
+    } catch (error) {
+      console.log(error);
+
+      this.setState({
+        isRecording: false
+      });
+    }
+  };
+
+  onRecordingStop = () => {};
+
   render() {
-    const { category, phraze, translated, isPublic } = this.state;
+    const { category, phraze, translated, isRecording } = this.state;
+    const { onRecordingStart, onRecordingStop } = this;
+
+    let recordingActionButton = null;
+
+    const addRecordingButton = (
+      <Button
+        icon="mic"
+        mode="contained"
+        onPress={onRecordingStart}
+        compact={false}
+        dark
+      >
+        {EN.recordPhraseButton.label}
+      </Button>
+    );
+
+    const stopRecordingButton = (
+      <Button
+        icon="stop"
+        mode="contained"
+        color="#B00020"
+        onPress={onRecordingStop}
+        compact={false}
+        dark
+      >
+        Stop recording
+      </Button>
+    );
+
+    if (isRecording) recordingActionButton = stopRecordingButton;
+    else recordingActionButton = addRecordingButton;
 
     return (
       <ScrollView style={styles.container}>
-        <TextField
-          label="Category"
-          value={category}
-          tintColor={Colors.mainColor.light}
-          onChangeText={category => this.setState({ category })}
-        />
-        <TextField
-          label="Phraze"
-          value={phraze}
-          onChangeText={phraze => this.setState({ phraze })}
-          tintColor={Colors.mainColor.light}
-          multiline
-          fontSize={32}
-        />
-
-        <TextField
-          label="Translation"
-          value={translated}
-          onChangeText={translated => this.setState({ translated })}
-          tintColor={Colors.mainColor.light}
-          multiline
-        />
-
-        <View style={styles.recordContainer}>
-          <Text style={{ color: Colors.text.dark, fontSize: 18 }}>Record</Text>
-          <Icon
-            name="mic"
-            color={Colors.mainColor.light}
-            reverse
-            raised
-            containerStyle={{ marginVertical: 15 }}
-            size={26}
+        <View style={styles.inputContainerStyle}>
+          <TextInput
+            label={EN.phraseInput.label}
+            value={phraze}
+            onChangeText={phraze => this.setState({ phraze })}
           />
+          <HelperText type="info">{EN.phraseInput.description}</HelperText>
         </View>
+        <View style={styles.inputContainerStyle}>
+          <TextInput
+            label={EN.categoryInput.label}
+            value={category}
+            onChangeText={category => this.setState({ category })}
+          />
+          <HelperText type="info">{EN.categoryInput.description}</HelperText>
+        </View>
+        <View style={styles.inputContainerStyle}>
+          <TextInput
+            label={EN.translationInput.label}
+            value={translated}
+            onChangeText={translated => this.setState({ translated })}
+          />
+          <HelperText type="info">{EN.translationInput.description}</HelperText>
+        </View>
+        <View style={styles.inputContainerStyle}>{recordingActionButton}</View>
       </ScrollView>
     );
   }
@@ -129,6 +172,9 @@ const styles = StyleSheet.create({
   saveButton: {
     backgroundColor: "transparent",
     padding: 3
+  },
+  inputContainerStyle: {
+    marginBottom: 8
   }
 });
 
