@@ -7,7 +7,6 @@ import reducers from "./reducers";
 
 import { createSwitchNavigator, createStackNavigator } from "react-navigation";
 import createDismissableStackNavigator from "./navigation/helpers/createDissmissableStackNavigator";
-import BottomTabNavigator from "./navigation/BottomTabNavigator";
 import StackWrapper from "./navigation/BasicStackNavigatorWrapper";
 
 import LoginScreen from "./components/LoginScreen";
