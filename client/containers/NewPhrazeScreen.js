@@ -34,8 +34,6 @@ class NewPhrazeScreen extends Component {
     )
   });
 
-  recording = new Expo.Audio.Recording();
-
   state = {
     category: "",
     phraze: "",
@@ -63,12 +61,26 @@ class NewPhrazeScreen extends Component {
   };
 
   onRecordingStart = async () => {
+    this.recording = new Expo.Audio.Recording();
     const { recording } = this;
+
     try {
+      await Expo.Audio.setAudioModeAsync({
+        allowsRecordingIOS: true,
+        interruptionModeIOS: Expo.Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
+        playsInSilentModeIOS: true,
+        shouldDuckAndroid: true,
+        interruptionModeAndroid: Expo.Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX
+      });
+
       await recording.prepareToRecordAsync(
         Expo.Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY
       );
+
+      console.log(await recording.getStatusAsync());
+
       await recording.startAsync();
+
       this.setState({
         isRecording: true
       });
@@ -81,24 +93,57 @@ class NewPhrazeScreen extends Component {
     }
   };
 
-  onRecordingStop = () => {};
+  onRecordingStop = async () => {
+    const { recording } = this;
+
+    await recording.stopAndUnloadAsync();
+
+    this.setState({
+      isRecording: false
+    });
+
+    const { sound } = await recording.createNewLoadedSound();
+
+    this.setState({
+      recordSound: sound
+    });
+
+    //await sound.playAsync();
+  };
+
+  onRecordPlay = async () => {
+    const { recordSound } = this.state;
+
+    await recordSound.replayAsync();
+  };
 
   render() {
-    const { category, phraze, translated, isRecording } = this.state;
-    const { onRecordingStart, onRecordingStop } = this;
+    const {
+      category,
+      phraze,
+      translated,
+      isRecording,
+      recordSound
+    } = this.state;
+    const { onRecordingStart, onRecordingStop, onRecordPlay } = this;
 
-    let recordingActionButton = null;
+    let recordingAction = null;
 
-    const addRecordingButton = (
+    const addRecordingButtonGenerator = (mode, label) => (
       <Button
         icon="mic"
-        mode="contained"
+        mode={mode}
         onPress={onRecordingStart}
         compact={false}
         dark
       >
-        {EN.recordPhraseButton.label}
+        {label}
       </Button>
+    );
+
+    const addRecordingButton = addRecordingButtonGenerator(
+      "contained",
+      EN.recordPhraseButton.label
     );
 
     const stopRecordingButton = (
@@ -114,8 +159,29 @@ class NewPhrazeScreen extends Component {
       </Button>
     );
 
-    if (isRecording) recordingActionButton = stopRecordingButton;
-    else recordingActionButton = addRecordingButton;
+    const playRecordAndRetakeButton = (
+      <View>
+        <View style={styles.inputContainerStyle}>
+          <Button
+            icon="play-arrow"
+            mode="contained"
+            onPress={onRecordPlay}
+            compact={false}
+            dark
+          >
+            Play record
+          </Button>
+        </View>
+        <View>
+          {addRecordingButtonGenerator("outlined", "Retake voice recording")}
+        </View>
+      </View>
+    );
+
+    if (isRecording) recordingAction = stopRecordingButton;
+    else if (!isRecording && recordSound)
+      recordingAction = playRecordAndRetakeButton;
+    else recordingAction = addRecordingButton;
 
     return (
       <ScrollView style={styles.container}>
@@ -143,7 +209,7 @@ class NewPhrazeScreen extends Component {
           />
           <HelperText type="info">{EN.translationInput.description}</HelperText>
         </View>
-        <View style={styles.inputContainerStyle}>{recordingActionButton}</View>
+        <View style={styles.inputContainerStyle}>{recordingAction}</View>
       </ScrollView>
     );
   }
