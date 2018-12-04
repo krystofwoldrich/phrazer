@@ -28,7 +28,7 @@ const createPhrases = (category, array = [], categoryName = "New") => {
       category: categoryName,
       phraze: rawPhrase.native,
       translated: rawPhrase.translation,
-      sound: rawPhrase.path
+      sound: { path: rawPhrase.path }
     });
 
     key++;
