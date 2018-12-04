@@ -17,10 +17,14 @@ import HomeScreen from "./containers/HomeScreen";
 import { Provider as PaperProvider } from "react-native-paper";
 import paperTheme from "./config/phrazer-paper-theme";
 
+import { getAudioPermissionAsync } from "./utils/permissions";
+
 Expo.Font.loadAsync({
   Roboto: require("./fonts/Roboto/Roboto-Regular.ttf"),
   "Roboto-Bold": require("./fonts/Roboto/Roboto-Black.ttf")
 });
+
+getAudioPermissionAsync();
 
 const NewPhrazeStack = createDismissableStackNavigator(
   {
