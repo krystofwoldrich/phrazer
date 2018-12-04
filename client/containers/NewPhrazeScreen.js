@@ -53,7 +53,8 @@ class NewPhrazeScreen extends Component {
       translated: this.state.translated,
       public: this.state.isPublic,
       phrazed: false,
-      favorite: false
+      favorite: false,
+      sound: { object: this.state.recordSound }
     };
     this.props.onSavePhraze(phraze);
     this.props.onGetPhrazesByCategory(phraze.category);
