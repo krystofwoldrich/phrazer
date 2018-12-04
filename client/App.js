@@ -15,6 +15,9 @@ import NewPhrazeScreen from "./containers/NewPhrazeScreen";
 import PhrazeDetailScreen from "./containers/PhrazeDetailScreen";
 import HomeScreen from "./containers/HomeScreen";
 
+import { Provider as PaperProvider } from "react-native-paper";
+import paperTheme from "./config/phrazer-paper-theme";
+
 Expo.Font.loadAsync({
   Roboto: require("./fonts/Roboto/Roboto-Regular.ttf"),
   "Roboto-Bold": require("./fonts/Roboto/Roboto-Black.ttf")
@@ -56,6 +59,8 @@ const Switch = createSwitchNavigator({
 
 export default () => (
   <Provider store={createStore(reducers)}>
-    <Switch />
+    <PaperProvider theme={paperTheme}>
+      <Switch />
+    </PaperProvider>
   </Provider>
 );
