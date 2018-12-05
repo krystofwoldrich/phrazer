@@ -2,12 +2,20 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { ScrollView, View, StyleSheet, Alert } from "react-native";
 import Text from "../components/MyText";
-import { Icon, CheckBox, Button } from "react-native-elements";
+import {
+  Icon,
+  CheckBox,
+  Button as ElementsButton
+} from "react-native-elements";
 import { TextField } from "react-native-material-textfield";
 import { AndroidBackHandler } from "react-navigation-backhandler";
 
+import { Button, TextInput, HelperText } from "react-native-paper";
+
 import * as actions from "../actions";
 import Colors from "../config/colors";
+
+import EN from "../language/en/new_phrase.json";
 
 class PhrazeDetailScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -22,7 +30,7 @@ class PhrazeDetailScreen extends Component {
     ),
     headerTitle: "Edit Phraze",
     headerRight: (
-      <Button
+      <ElementsButton
         buttonStyle={styles.saveButton}
         title="SAVE"
         onPress={() => navigation.state.params.handleSave()}
@@ -41,15 +49,23 @@ class PhrazeDetailScreen extends Component {
     const { navigation } = this.props;
     navigation.setParams({ handleSave: this.onPressSave });
     const item = navigation.getParam("item", false);
+
+    let itemHasSound = false;
+    console.log(item);
+    if (item.sound.path || item.sound.object) itemHasSound = true;
+
     this.setState({
+      isPlayButtonDisabled: !itemHasSound,
       category: item.category,
       phraze: item.phraze,
       translated: item.translated,
-      isPublic: item.public
+      isPublic: item.public,
+      sound: item.sound
     });
   }
 
   onPressSave = () => {
+    const { recordSound } = this.state;
     const item = this.props.navigation.getParam("item", {});
 
     const phraze = { ...item };
@@ -58,6 +74,8 @@ class PhrazeDetailScreen extends Component {
     if (this.state.phraze != "") phraze.phraze = this.state.phraze;
     if (this.state.translated != "") phraze.translated = this.state.translated;
     if (this.state.isPublic != item.public) phraze.public = this.state.isPublic;
+
+    if (recordSound) phraze.sound = { object: recordSound };
 
     this.props.onSavePhraze(phraze);
     this.props.onGetPhrazesByCategory(phraze.category);
@@ -85,7 +103,7 @@ class PhrazeDetailScreen extends Component {
             const phraze = { ...item };
 
             this.props.onDeletePhraze(phraze.key);
-            this.props.onGetPhrazesByCategory(phraze.category)
+            this.props.onGetPhrazesByCategory(phraze.category);
             this.props.navigation.dismiss();
           }
         }
@@ -94,70 +112,163 @@ class PhrazeDetailScreen extends Component {
     );
   };
 
+  onRecordingStart = async () => {
+    this.recording = new Expo.Audio.Recording();
+    const { recording } = this;
+
+    try {
+      await Expo.Audio.setAudioModeAsync({
+        allowsRecordingIOS: true,
+        interruptionModeIOS: Expo.Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
+        playsInSilentModeIOS: true,
+        shouldDuckAndroid: true,
+        interruptionModeAndroid: Expo.Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX
+      });
+
+      await recording.prepareToRecordAsync(
+        Expo.Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY
+      );
+
+      console.log(await recording.getStatusAsync());
+
+      await recording.startAsync();
+
+      this.setState({
+        isRecording: true
+      });
+    } catch (error) {
+      console.log(error);
+
+      this.setState({
+        isRecording: false
+      });
+    }
+  };
+
+  onRecordingStop = async () => {
+    const { recording } = this;
+
+    await recording.stopAndUnloadAsync();
+
+    this.setState({
+      isRecording: false
+    });
+
+    const { sound } = await recording.createNewLoadedSound();
+
+    this.setState({
+      recordSound: sound,
+      isPlayButtonDisabled: false
+    });
+  };
+
+  onRecordPlay = async () => {
+    const { recordSound, sound } = this.state;
+
+    if (recordSound) {
+      await recordSound.replayAsync();
+    } else if (sound.object) {
+      await sound.object.replayAsync();
+    } else {
+      const soundObject = new Expo.Audio.Sound();
+      await soundObject.loadAsync({ uri: sound.path }, {}, true);
+      await soundObject.playAsync();
+    }
+  };
+
   render() {
     const { navigation } = this.props;
-    const { phraze, translated, category, isPublic } = this.state;
+    const {
+      phraze,
+      translated,
+      category,
+      isPublic,
+      isPlayButtonDisabled,
+      isRecording
+    } = this.state;
     const item = navigation.getParam("item", false);
 
     if (!item) return <Text>No Data</Text>;
 
+    let recorder = (
+      <Button
+        icon="mic"
+        mode="outlined"
+        onPress={() => {
+          this.onRecordingStart();
+        }}
+        compact={false}
+        dark
+      >
+        {isPlayButtonDisabled ? "Add voice record" : "Retake voice recording"}
+      </Button>
+    );
+
+    if (isRecording)
+      recorder = (
+        <Button
+          icon="stop"
+          mode="contained"
+          color="#B00020"
+          onPress={this.onRecordingStop}
+          compact={false}
+          dark
+        >
+          Stop recording
+        </Button>
+      );
+
     return (
       <AndroidBackHandler onBackPress={this.onBackButtonPressAndroid}>
         <ScrollView style={styles.container}>
-          <TextField
-            label="Category"
-            value={category}
-            onChangeText={category => this.setState({ category })}
-            tintColor={Colors.mainColor.light}
-          />
-          <TextField
-            label={"Native"}
-            value={phraze}
-            onChangeText={phraze => this.setState({ phraze })}
-            tintColor={Colors.mainColor.light}
-            multiline
-            fontSize={32}
-          />
-
-          <TextField
-            label="Translation"
-            value={translated}
-            onChangeText={translated => this.setState({ translated })}
-            tintColor={Colors.mainColor.light}
-            multiline
-          />
-
-          <View style={styles.recordContainer}>
-            <Text style={{ color: Colors.text.dark, fontSize: 18 }}>
-              Play the record
-            </Text>
-            <Icon
-              name="play-arrow"
-              color={Colors.mainColor.light}
-              reverse
-              raised
-              containerStyle={{ marginVertical: 15 }}
-              size={26}
+          <View style={styles.inputContainerStyle}>
+            <View style={styles.inputContainerStyle}>
+              <TextInput
+                label={EN.categoryInput.label}
+                value={category}
+                onChangeText={category => this.setState({ category })}
+              />
+            </View>
+            <TextInput
+              label={EN.phraseInput.label}
+              value={phraze}
+              onChangeText={phraze => this.setState({ phraze })}
             />
           </View>
-          <CheckBox
-            containerStyle={styles.checkBoxContainer}
-            iconType="material"
-            checkedIcon="check-box"
-            uncheckedIcon="check-box-outline-blank"
-            checkedColor={Colors.mainColor.light}
-            textStyle={{ color: Colors.icon.grey.dark, fontWeight: "300" }}
-            title="Public"
-            checked={isPublic}
-            onPress={() => this.setState({ isPublic: !isPublic })}
-          />
-          <Icon
-            name="delete"
-            containerStyle={styles.deleteButtonContainer}
-            onPress={this.handleDelete}
-            color="#ff0000"
-            size={28}
-          />
+          <View style={styles.inputContainerStyle}>
+            <TextInput
+              label={EN.translationInput.label}
+              value={translated}
+              onChangeText={translated => this.setState({ translated })}
+            />
+          </View>
+          <View style={styles.inputContainerStyle}>
+            <Button
+              icon="play-arrow"
+              mode="contained"
+              onPress={() => {
+                this.onRecordPlay();
+              }}
+              compact={false}
+              dark
+              disabled={isPlayButtonDisabled}
+            >
+              Play record
+            </Button>
+          </View>
+          <View style={styles.inputContainerStyle}>{recorder}</View>
+          <View>
+            <Button
+              icon="delete"
+              mode="contained"
+              color="#B00020"
+              onPress={this.handleDelete}
+              compact={false}
+              dark
+            >
+              Delete
+            </Button>
+          </View>
         </ScrollView>
       </AndroidBackHandler>
     );
@@ -191,6 +302,9 @@ const styles = StyleSheet.create({
   deleteButtonContainer: {
     marginVertical: 15,
     alignItems: "flex-start"
+  },
+  inputContainerStyle: {
+    marginBottom: 8
   }
 });
 
