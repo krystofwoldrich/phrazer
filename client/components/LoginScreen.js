@@ -16,13 +16,11 @@ const LoginScreen = ({ navigation }) => {
           Phrazer!
         </Text>
       </View>
-      <Button title="LOG IN" buttonStyle={styles.loginBtn} />
-      <Text
-        style={styles.skipBtn}
+      <Button
+        title="START DEMO"
+        buttonStyle={styles.loginBtn}
         onPress={() => navigation.navigate("HomeStack")}
-      >
-        Skip this step
-      </Text>
+      />
     </View>
   );
 };
