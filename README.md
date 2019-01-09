@@ -11,3 +11,8 @@ Besides the branches named bellow others are created and deleted by the feature 
 - Demo-1: Redesigned application prepared for presentation at HUMEX 5 December 2018.
 - Demo-sounds: Original design application with the social network part.
 - Server: As the name suggests this is where the latest release of server part of the app is located.
+
+## Design preview
+
+### Landing screen
+![Landing screen image](design-preview/Loading.png)
