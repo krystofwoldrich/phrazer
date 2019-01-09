@@ -24,8 +24,8 @@ Besides the branches named bellow others are created and deleted by the feature 
 ![Search screen image](design-preview/Search.png)
 
 ### Add New Phraze (Blank)
-![Add New Phraze (Blank) image](design-preview/Add_New_Phraze_Blank.png)
+![Add New Phraze (Blank) image](design-preview/Add New Phrase (Blank).png)
 
 ### Add New Phraze (Recording)
-![Add New Phraze (Recording) image](design-preview/Add_New_Phraze_Recording.png)
+![Add New Phraze (Recording) image](design-preview/Add New Phrase (Phraze recording).png)
 
